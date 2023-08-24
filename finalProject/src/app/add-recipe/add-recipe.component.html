@@ -1,0 +1,39 @@
+<form (submit)="addRecipe()">
+    <div>
+        <label for="name">Recipe Name:</label>
+        <input type="text" name="name" [(ngModel)]="recipe.Name">
+    </div>
+    <div>
+        <label for="category">Category ID:</label>
+        <select name="category" [(ngModel)]="recipe.CategoryID">
+            <option *ngFor="let category of categories" value="{{category.ID}}">
+                {{category.Name}}
+            </option>
+        </select>
+    </div>
+    <div>
+        <label for="prepTime">Preperation Time:</label>
+        <input type="number" name="prepTime" min="0" [(ngModel)]="recipe.PrepTime">
+    </div>
+    <div>
+        <label for="difficulty">Difficulty:</label>
+        <input type="range" max="5" name="difficulty" [(ngModel)]="recipe.Difficulty">
+    </div>
+    <!-- V V V V V V V V for="ingredients"-->
+    <div>
+        <label>Ingredients:</label>
+        <div *ngFor="let item of recipe.Ingredients;let i=index" >
+            <input type="text" name="{{i}}" [(ngModel)]="recipe.Ingredients[i]" (change)="addIngredient()" />
+        </div>
+    </div>
+    <div>
+        <label for="directions">Directions:</label>
+        <input type="text" name="directions" [(ngModel)]="recipe.Directions">
+    </div>
+    <!-- <div>
+        <label for="img">Select image:</label>
+        <input type="file" #img name="img" accept="image/*" >
+        <input type="image" src="img.value" alt="recipy img">
+    </div> -->
+    <button type="submit">Add Recipe</button>
+</form>

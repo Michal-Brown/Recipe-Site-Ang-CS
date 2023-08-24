@@ -1,0 +1,32 @@
+<form [formGroup]="form" (ngSubmit)="addUser()">
+    <div>
+        <label for="username">username:</label> 
+        <input name="username" [(ngModel)]="user.Name" type="text" formControlName="username" />
+<div *ngIf="form.controls['username'].dirty&&form.controls['username'].errors?.required">
+    *username is required
+</div>
+    </div>
+    <div>
+        <label for="address">address:</label>
+        <input name="address" [(ngModel)]="user.Address" type="text" formControlName="address"/>
+        <div *ngIf="form.controls['address'].dirty&&form.controls['address'].errors?.required">
+            *address is required
+        </div>
+    </div>
+    <div>
+        <label for="email">email:</label>
+        <input name="email" [(ngModel)]="user.Email" type="email" formControlName="email"/>
+        <div *ngIf="form.controls['email'].dirty&&form.controls['email'].errors?.required">
+            *email is required
+        </div>
+        <div *ngIf="form.controls['email'].dirty&&form.controls['email'].errors?.email">
+            *email is not valid
+        </div>
+    </div>
+    <div>
+        <label for="password">password:</label>
+        <input name="password" [(ngModel)]="user.Password" type="password" formControlName="password"/>
+        <div *ngIf="form.controls['password'].dirty && form.controls['password'].errors?.required"></div>
+    </div>
+    <button type="submit" [disabled]="!form.valid">submit</button>
+</form>
